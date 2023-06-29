@@ -3,4 +3,4 @@ pandas
 Flask==2.0.2
 gunicorn
 nltk
-
+beautifulsoup4>=4.9.3

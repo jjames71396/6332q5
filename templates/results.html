@@ -7,10 +7,7 @@
    <body>
      <main>
         <div class="px-4 py-3 my-2 text-left">
-			{% for item in name %}
-				<h1 class="display-6 fw"> {{item}}</h1>
-				<h1 class="display-6 fw"> &nbsp </h1>
-			{% endfor %}
+				<h1 class="display-6 fw"> {{name}}</h1>
         </div>
 		<div class="px-4 py-3 my-2 text-center">
             <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Back home</a>
