@@ -71,6 +71,29 @@ def remove_tags(html_string):
 
     return html_string
 
+def remove_word(text, word):
+    return text.replace(word, '')    
+
+
+def check_strings(original_strings, check_strings):
+    for check_str in check_strings:
+        found = False
+        for original_str in original_strings:
+            if check_str in original_str:
+                found = True
+                break
+        if not found:
+            return False
+    return True
+
+def find_words(text, words):
+    trigrams_list = ["_".join(item) for item in nltk.trigrams(text.split(' '))]
+    print(trigrams_list)
+    for word in trigrams_list:
+        for w in words:
+            if w not in word:
+                return False
+    return True if all(word in string for word in word_list) else False
 
 @app.route('/')
 def index():
@@ -102,6 +125,24 @@ def htmldoc2():
         txt += t
         txt += " "
     return render_template('results.html', name = txt) 
+    
+@app.route('/te', methods=['POST'])
+def te():
+    text = request.form['text']
+    word = request.form['word']
+    words = request.form['words'].split()
+    action = request.form['action']
+    
+    modified_text = text
+    if action == 'RM':
+        modified_text = remove_word(modified_text, word)
+    elif action == 'F':
+        bo = find_words(modified_text, words)
+        modified_text = "not found"
+        if bo:
+            modified_text = words[0] + " " + words[1] + " found"
+    
+    return render_template('index.html', text=text, modified_text=modified_text, word=word, words=' '.join(words), action=action)
     
     
 @app.route('/admin', methods=['POST'])

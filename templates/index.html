@@ -49,6 +49,31 @@
                 </div>            
             </div>
         </form>
+		<form method="post" action="{{url_for('te')}}">
+             <label for="text">Enter some text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50">{{ text }}</textarea><br><br>
+        
+        <label for="word">Enter a single word:</label><br>
+        <input type="text" id="word" name="word" value="{{ word }}"><br><br>
+        
+        <label for="words">Enter two words:</label><br>
+        <input type="text" id="words" name="words" value="{{ words }}"><br><br>
+        
+        <label for="action">Choose an action:</label><br>
+        <input type="radio" id="action_rm" name="action" value="RM" checked>
+        <label for="action_rm">Remove word</label><br>
+        <input type="radio" id="action_f" name="action" value="F">
+        <label for="action_f">Find words</label><br><br>
+        
+        <input type="submit" value="Submit">
+        </form>
+		<hr>
+    
+    <h2>Text (Original):</h2>
+    <p>{{ text }}</p>
+    
+    <h2>Text (Modified):</h2>
+    <p>{{ modified_text }}</p>
      </main>      
    </body>
 </html>
