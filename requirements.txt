@@ -1,0 +1,6 @@
+numpy
+pandas
+Flask==2.0.2
+gunicorn
+nltk
+
