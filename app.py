@@ -76,9 +76,10 @@ def remove_word(text, word):
 
 
 def check_strings(original_strings, check_strings):
+    trigrams_list = ["_".join(item) for item in nltk.trigrams(original_strings.split(' '))]
     for check_str in check_strings:
         found = False
-        for original_str in original_strings:
+        for original_str in trigrams_list:
             if check_str in original_str:
                 found = True
                 break
@@ -137,10 +138,10 @@ def te():
     if action == 'RM':
         modified_text = remove_word(modified_text, word)
     elif action == 'F':
-        bo = find_words(modified_text, words)
+        bo = check_strings(modified_text, words)
         modified_text = "not found"
         if bo:
-            modified_text = words[0] + " " + words[1] + " found"
+            modified_text = " found"
     
     return render_template('index.html', text=text, modified_text=modified_text, word=word, words=' '.join(words), action=action)
     
